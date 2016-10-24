@@ -1,0 +1,9 @@
+[user]
+	email = davidesousa@gmail.com
+	name = David de Sousa
+[push]
+	default = simple
+[core]
+	editor = /usr/bin/vim
+[diff]
+	tool = vimdiff
