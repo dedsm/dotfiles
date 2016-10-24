@@ -7,7 +7,7 @@ set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 
 
-Plugin 'VundleVim/Vundle.vim'
+" Plugin 'VundleVim/Vundle.vim' handled by homeshick
 Plugin 'noahfrederick/vim-skeleton'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
