@@ -1,13 +1,11 @@
 set nocompatible
 filetype off
 
-set t_Co=256
-
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 
 
-" Plugin 'VundleVim/Vundle.vim' handled by homeshick
+Plugin 'VundleVim/Vundle.vim' " handled by homeshick
 Plugin 'noahfrederick/vim-skeleton'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
@@ -23,7 +21,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'rking/ag.vim'
-Plugin 'flazz/vim-colorschemes'
+Plugin 'altercation/vim-colors-solarized'
 Plugin 'tmhedberg/matchit'
 Plugin 'mattn/emmet-vim'
 Plugin 'editorconfig/editorconfig-vim'
@@ -31,6 +29,7 @@ Plugin 'ciaranm/detectindent'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ervandew/supertab'
 Plugin 'vim-scripts/ZoomWin'
+Plugin 'pearofducks/ansible-vim'
 
 " needs ctags installed
 Plugin 'majutsushi/tagbar'
@@ -64,6 +63,7 @@ set expandtab
 set sm
 map <F3> :NERDTreeToggle<CR>
 map <F4> :ZoomWin<CR>
+call togglebg#map("<F5>")
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tagbar
@@ -72,7 +72,8 @@ map <F4> :ZoomWin<CR>
 nnoremap <leader>] :TagbarToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Nerdtree ignores
+" Nerdtree ignores 
+"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
@@ -156,8 +157,11 @@ let g:airline#extensions#branch#empty_message = 'no-git'
 let g:airline_theme='dark'
 
 " Theme
+"let g:solarized_visibility = "high"
+"let g:solarized_contrast = "high"
+"let g:solarized_termcolors=256
 set background=dark
-colorscheme grb256
+colorscheme solarized
 
 " Markdown, not Modula-2
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
@@ -165,10 +169,6 @@ autocmd BufWritePost *.md :silent !markdown -o <afile>:p:h/<afile>:t:r.html <afi
 
 " Remove trailing whitespace from certain files
 autocmd FileType c,cpp,java,php,python autocmd BufWritePre <buffer> :%s/\s\+$//e
-
-" Show different background after 80 columns
-let &colorcolumn=join(range(81,999),",")
-highlight ColorColumn ctermbg=235 guibg=#2c2d27
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -188,7 +188,7 @@ function! RunTestFile(...)
     endif
 
     " Run the tests for the previously-marked file.
-    let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|test_.\+.py\)$') != -1
+    let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|test_.\+.py\|.\+_test.py\)$') != -1
     if in_test_file
         call SetTestFile(command_suffix)
     elseif !exists("t:grb_test_file")

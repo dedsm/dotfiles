@@ -34,7 +34,7 @@ if ! zgen saved; then
     zgen load tonyseek/oh-my-zsh-virtualenv-prompt
     zgen load tonyseek/oh-my-zsh-seeker-theme seeker
 
-#    zgen save
+    zgen save
 fi
 
 # PageUp and PageDown search
