@@ -24,7 +24,6 @@ if ! zgen saved; then
     zgen oh-my-zsh plugins/npm
     zgen oh-my-zsh plugins/pip
     zgen oh-my-zsh plugins/rbenv
-    zgen oh-my-zsh plugins/ssh-agent
     zgen oh-my-zsh plugins/sudo
     zgen oh-my-zsh plugins/systemd
     zgen oh-my-zsh plugins/tmux
