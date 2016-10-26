@@ -115,6 +115,11 @@ add_to_path heroku /usr/local/heroku/bin
 source_path venvwrapper /usr/bin/virtualenvwrapper.sh
 
 # npm
+function npm_init {
+    export NPM_PACKAGES="$HOME/.npm-packages"
+    export MANPATH="$NPM_PACKAGES/share/man:$MANPATH"
+    export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
+}
 add_to_path npm "$HOME/.npm-packages/bin"
 
 # local binaries
