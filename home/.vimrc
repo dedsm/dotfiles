@@ -157,8 +157,8 @@ let g:airline#extensions#branch#empty_message = 'no-git'
 let g:airline_theme='dark'
 
 " Theme
-"let g:solarized_visibility = "high"
-"let g:solarized_contrast = "high"
+let g:solarized_visibility = "high"
+let g:solarized_contrast = "high"
 "let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized

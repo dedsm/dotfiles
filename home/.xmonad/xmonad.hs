@@ -37,7 +37,7 @@ main = do
         } 
         `additionalKeysP`
         [ 
-        ("M1-S-w", spawn "google-chrome-stable")
+        ("M1-S-w", spawn "chromium")
         , ("M1-S-f", spawn "firefox")
         , ("M1-S-p", spawn "thunar")
         , ("M1-S-t", spawn "xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/presentation-mode -T")
