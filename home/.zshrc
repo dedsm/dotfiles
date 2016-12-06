@@ -3,6 +3,9 @@ fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
 
 source "$HOME/.zgen/zgen.zsh"
 
+# Disable oh-my-zsh auto update
+export DISABLE_AUTO_UPDATE=true
+
 if ! zgen saved; then
     zgen oh-my-zsh
 
@@ -32,6 +35,7 @@ if ! zgen saved; then
 
     zgen load tonyseek/oh-my-zsh-virtualenv-prompt
     zgen load tonyseek/oh-my-zsh-seeker-theme seeker
+    zgen load unixorn/autoupdate-zgen
 
     zgen save
 fi
@@ -62,7 +66,6 @@ zstyle :compinstall filename '/home/david/.zshrc'
 
 autoload -Uz compinit
 compinit
-
 
 function add_to_path {
     if [[ $# -lt 2 ]]; then
