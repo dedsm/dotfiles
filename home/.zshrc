@@ -79,6 +79,8 @@ function add_to_path {
             echo "please install $1 or add a .ignore_$1 in $HOME"
             return
         fi
+    else
+        return
     fi
 
     if [[ ! -z $3 ]]; then
@@ -98,6 +100,8 @@ function source_path {
             echo "please install $1 or add a .ignore_$1 in $HOME"
             return
         fi
+    else
+        return
     fi
 
     if [[ ! -z $3 ]]; then
