@@ -30,6 +30,7 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ervandew/supertab'
 Plugin 'vim-scripts/ZoomWin'
 Plugin 'pearofducks/ansible-vim'
+Plugin 'CrackerJackMack/vim-pudb'
 
 " needs ctags installed
 Plugin 'majutsushi/tagbar'
