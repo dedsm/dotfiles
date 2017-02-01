@@ -8,7 +8,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim' " handled by homeshick
 Plugin 'noahfrederick/vim-skeleton'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'scrooloose/syntastic'
+Plugin 'w0rp/ale'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-endwise'
@@ -65,6 +65,12 @@ set sm
 map <F3> :NERDTreeToggle<CR>
 map <F4> :ZoomWin<CR>
 call togglebg#map("<F5>")
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Linter
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let &runtimepath.=',~/.vim/bundle/ale'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tagbar
