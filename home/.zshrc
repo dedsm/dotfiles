@@ -32,6 +32,7 @@ if ! zgen saved; then
     zgen oh-my-zsh plugins/tmux
     zgen oh-my-zsh plugins/virtualenv
     zgen oh-my-zsh plugins/virtualenvwrapper
+    zgen oh-my-zsh plugins/vi-mode
 
     zgen load tonyseek/oh-my-zsh-virtualenv-prompt
     zgen load tonyseek/oh-my-zsh-seeker-theme seeker
@@ -51,7 +52,8 @@ export TERM="xterm-256color"
 alias ms="mux start"
 
 # force EDITOR
-export EDITOR="/usr/bin/vim"
+export EDITOR="/usr/bin/nvim"
+alias vim="nvim"
 
 # History setup
 
@@ -60,7 +62,24 @@ HISTSIZE=100000
 SAVEHIST=1000000
 setopt appendhistory extendedglob
 
-bindkey -e
+# Vi mode
+#bindkey -v
+export KEYTIMEOUT=1
+
+## Use vim cli mode
+#bindkey '^P' up-history
+#bindkey '^N' down-history
+
+## backspace and ^h working even after
+## returning from command mode
+#bindkey '^?' backward-delete-char
+#bindkey '^h' backward-delete-char
+
+## ctrl-w removed word backwards
+#bindkey '^w' backward-kill-word
+
+## ctrl-r starts searching history backward
+#bindkey '^r' history-incremental-search-backward
 
 zstyle :compinstall filename '/home/david/.zshrc'
 

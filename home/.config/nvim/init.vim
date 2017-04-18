@@ -1,41 +1,22 @@
-set nocompatible
-filetype off
+" Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
+call plug#begin('~/.local/share/nvim/plugged')
+Plug 'ctrlpvim/ctrlp.vim' " Fuzzy file search
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " File browser
+Plug 'rking/ag.vim' " Text search
+Plug 'christoomey/vim-tmux-navigator' " Tmux integration
+Plug 'w0rp/ale' " Syntax checking
+Plug 'Valloric/YouCompleteMe' " Code completion
+Plug 'ervandew/supertab' " Smart tab key
+Plug 'bling/vim-airline' " Nice status line
+Plug 'scrooloose/nerdcommenter' " Comments handling
+Plug 'airblade/vim-gitgutter' " Git status display
+Plug 'CrackerJackMack/vim-pudb' " Connection to pudb breakpoints
+Plug 'altercation/vim-colors-solarized' " Theme
+call plug#end()
 
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#begin()
+let g:python_host_prog = '/usr/bin/python2'
+let g:python3_host_prog = '/usr/bin/python3'
 
-
-Plugin 'VundleVim/Vundle.vim' " handled by homeshick
-Plugin 'noahfrederick/vim-skeleton'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'w0rp/ale'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-haml'
-Plugin 'fatih/vim-go'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'bling/vim-airline'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'rking/ag.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'tmhedberg/matchit'
-Plugin 'mattn/emmet-vim'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'ciaranm/detectindent'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'ervandew/supertab'
-Plugin 'vim-scripts/ZoomWin'
-Plugin 'pearofducks/ansible-vim'
-Plugin 'CrackerJackMack/vim-pudb'
-
-" needs ctags installed
-Plugin 'majutsushi/tagbar'
-
-call vundle#end()
 filetype plugin indent on
 
 syntax on
@@ -62,29 +43,29 @@ set backspace=eol,start,indent
 
 set expandtab
 set sm
-map <F3> :NERDTreeToggle<CR>
-map <F4> :ZoomWin<CR>
-call togglebg#map("<F5>")
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Linter
+" YouCompleteMe
+"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>gd :YcmCompleter GoToDeclaration<cr>
 
-let &runtimepath.=',~/.vim/bundle/ale'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Tagbar
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-nnoremap <leader>] :TagbarToggle<CR>
+" make YCM use the python version of the virtualenv to do completions
+let g:ycm_python_binary_path = split(system("which python"))[0]
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Nerdtree ignores 
+" Nerdtree 
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+map <F3> :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SuperTab
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:SuperTabDefaultCompletionType = "<c-n>"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -93,7 +74,7 @@ set nobackup
 set nowb
 set noswapfile
 
-set undodir=~/.vim/undodir
+set undodir=~/.local/share/nvim/undodir
 set undofile
 set undolevels=1000 "maximum number of changes that can be undone
 set undoreload=10000 "maximum number lines to save for undo on a buffer
@@ -122,39 +103,17 @@ nnoremap ; :
 cnoreabbrev ag Ag!
 cnoreabbrev Ag Ag!
 
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-
 map <leader>zz %:sleep 1000m<CR>%
-
-"" YouCompleteMe
-nnoremap <leader>gd :YcmCompleter GoToDeclaration<cr>
-
-" make YCM use the python version of the virtualenv to do completions
-let g:ycm_python_binary_path = split(system("which python"))[0]
-
-"SuperTab
-let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " Ctrl P
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
-set wildignore=vendor "ignoring all the gems bundled
-
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-
-
-" Go mappings
-
-au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
+" Markdown, not Modula-2
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+"
+" Remove trailing whitespace from certain files
+autocmd FileType c,cpp,java,php,python autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " Vim-Airline
 
@@ -169,14 +128,6 @@ let g:solarized_contrast = "high"
 "let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
-
-" Markdown, not Modula-2
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-autocmd BufWritePost *.md :silent !markdown -o <afile>:p:h/<afile>:t:r.html <afile>:p
-
-" Remove trailing whitespace from certain files
-autocmd FileType c,cpp,java,php,python autocmd BufWritePre <buffer> :%s/\s\+$//e
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RUNNING TESTS taken from Gary Bernhardt
@@ -247,3 +198,8 @@ function! RunTests(filename)
         end
     end
 endfunction
+
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
