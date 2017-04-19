@@ -45,8 +45,10 @@ fi
 bindkey "\e[5~" history-beginning-search-backward
 bindkey "\e[6~" history-beginning-search-forward
 
-# 256 color mode
-export TERM="xterm-256color"
+# Home and End keys
+bindkey "${terminfo[khome]}" beginning-of-line
+bindkey "${terminfo[kend]}" end-of-line
+
 
 # aliases
 alias ms="mux start"
