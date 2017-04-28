@@ -2,6 +2,7 @@
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'ctrlpvim/ctrlp.vim' " Fuzzy file search
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " File browser
+Plug 'noahfrederick/vim-skeleton'
 Plug 'rking/ag.vim' " Text search
 Plug 'christoomey/vim-tmux-navigator' " Tmux integration
 Plug 'w0rp/ale' " Syntax checking
