@@ -50,6 +50,8 @@ set sm
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>gd :YcmCompleter GoToDeclaration<cr>
+" autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 " make YCM use the python version of the virtualenv to do completions
 let g:ycm_python_binary_path = split(system("which python"))[0]
