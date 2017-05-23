@@ -32,7 +32,6 @@ if ! zgen saved; then
     zgen oh-my-zsh plugins/tmux
     zgen oh-my-zsh plugins/virtualenv
     zgen oh-my-zsh plugins/virtualenvwrapper
-    zgen oh-my-zsh plugins/vi-mode
 
     zgen load tonyseek/oh-my-zsh-virtualenv-prompt
     zgen load tonyseek/oh-my-zsh-seeker-theme seeker
