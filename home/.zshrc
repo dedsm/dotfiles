@@ -50,7 +50,7 @@ bindkey "${terminfo[kend]}" end-of-line
 
 
 # aliases
-alias ms="mux start"
+alias ms="tmuxinator start"
 
 # force EDITOR
 export EDITOR="/usr/bin/nvim"
