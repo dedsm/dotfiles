@@ -6,19 +6,21 @@ source "$HOME/.zgen/zgen.zsh"
 # Disable oh-my-zsh auto update
 export DISABLE_AUTO_UPDATE=true
 
+autoload -Uz compinit
+compinit
+
 if ! zgen saved; then
     zgen oh-my-zsh
 
     zgen oh-my-zsh plugins/archlinux
+    zgen oh-my-zsh plugins/autojump
+    zgen oh-my-zsh plugins/bundler
     zgen oh-my-zsh plugins/celery
     zgen oh-my-zsh plugins/cp
     zgen oh-my-zsh plugins/django
     zgen oh-my-zsh plugins/docker
     zgen oh-my-zsh plugins/docker-compose
     zgen oh-my-zsh plugins/gem
-    zgen oh-my-zsh plugins/bundler
-    zgen oh-my-zsh plugins/ruby
-    zgen oh-my-zsh plugins/python
     zgen oh-my-zsh plugins/git
     zgen oh-my-zsh plugins/git-flow
     zgen oh-my-zsh plugins/heroku
@@ -26,12 +28,15 @@ if ! zgen saved; then
     zgen oh-my-zsh plugins/node
     zgen oh-my-zsh plugins/npm
     zgen oh-my-zsh plugins/pip
+    zgen oh-my-zsh plugins/python
     zgen oh-my-zsh plugins/rbenv
+    zgen oh-my-zsh plugins/ruby
     zgen oh-my-zsh plugins/sudo
     zgen oh-my-zsh plugins/systemd
     zgen oh-my-zsh plugins/tmux
     zgen oh-my-zsh plugins/virtualenv
     zgen oh-my-zsh plugins/virtualenvwrapper
+    zgen oh-my-zsh plugins/vault
 
     zgen load tonyseek/oh-my-zsh-virtualenv-prompt
     zgen load tonyseek/oh-my-zsh-seeker-theme seeker
@@ -62,6 +67,7 @@ HISTFILE=~/.zhistory
 HISTSIZE=100000
 SAVEHIST=1000000
 setopt appendhistory extendedglob
+setopt histignorespace
 
 # Vi mode
 #bindkey -v
@@ -84,8 +90,7 @@ export KEYTIMEOUT=1
 
 zstyle :compinstall filename '/home/david/.zshrc'
 
-autoload -Uz compinit
-compinit
+
 
 function add_to_path {
     if [[ $# -lt 2 ]]; then
@@ -140,6 +145,9 @@ add_to_path heroku /usr/local/heroku/bin
 
 #virtualenvwrapper
 source_path venvwrapper /usr/bin/virtualenvwrapper.sh
+
+# Custom variables
+source_path custom_config "$HOME/.custom_config"
 
 # npm
 function npm_init {
