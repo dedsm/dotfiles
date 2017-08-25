@@ -2,6 +2,7 @@
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'ctrlpvim/ctrlp.vim' " Fuzzy file search
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " File browser
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'noahfrederick/vim-skeleton'
 Plug 'rking/ag.vim' " Text search
 Plug 'christoomey/vim-tmux-navigator' " Tmux integration
@@ -54,8 +55,8 @@ nnoremap <leader>gd :YcmCompleter GoToDeclaration<cr>
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 " make YCM use the python version of the virtualenv to do completions
-let g:ycm_python_binary_path = split(system("which python"))[0]
-"let g:ycm_log_level = "debug"
+let g:ycm_python_binary_path = 'python'
+" let g:ycm_log_level = "debug"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Nerdtree 

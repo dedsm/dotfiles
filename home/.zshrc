@@ -162,3 +162,12 @@ function add_local_lib {
     export LD_LIBRARY_PATH="$HOME/local/lib:$LD_LIBRARY_PATH"
 }
 add_to_path localbin "$HOME/local/bin"
+
+# go
+function golang_init {
+    export GOPATH="$HOME/.golang"
+}
+add_to_path golang "$HOME/.golang/bin" golang_init
+
+# direnv
+eval "$(direnv hook zsh)"
