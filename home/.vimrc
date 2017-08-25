@@ -1,3 +1,8 @@
+"
+" I've been using nvim for a while so this file is outdated, check
+" .config/nvim/init.vim
+"
+
 set nocompatible
 filetype off
 
