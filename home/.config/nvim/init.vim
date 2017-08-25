@@ -218,9 +218,3 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
-
-"autocmd InsertLeave * silent exe "!g810-led -k dollar FF0000"
-"autocmd InsertEnter * silent exe "!g810-led -a FFFFFF"
-autocmd FocusGained * silent exe "!g810-led -p ~/.g810-profiles/vim_normal.profile 2>&1 > /dev/null"
-autocmd FocusLost * silent exe "!g810-led -a FFFFFF 2>&1 > /dev/null"
-autocmd VimLeave * silent exe "!g810-led -a FFFFFF 2>&1 > /dev/null"
