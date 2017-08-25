@@ -203,7 +203,7 @@ function! RunTests(filename)
             exec ":!bundle exec rspec --color " . a:filename
         " If we see python-looking tests, assume they should be run with Nose
         elseif strlen(glob("test/**/*.py") . glob("**/tests/**/*.py"))
-            exec "!py.test -s " . a:filename
+            exec "!make test/\"-e simple -- " . a:filename . "\""
         " Fall back to a normal blocking test run
         else
             exec ":!rspec --color " . a:filename
