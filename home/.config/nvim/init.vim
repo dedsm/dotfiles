@@ -14,6 +14,7 @@ Plug 'scrooloose/nerdcommenter' " Comments handling
 Plug 'airblade/vim-gitgutter' " Git status display
 Plug 'CrackerJackMack/vim-pudb' " Connection to pudb breakpoints
 Plug 'altercation/vim-colors-solarized' " Theme
+Plug 'junegunn/fzf.vim' " Fuzzy file search
 
 " Dependency; required for vim-syncopate.
 Plug 'google/vim-maktaba'
@@ -134,9 +135,9 @@ set clipboard=unnamedplus
 set pastetoggle=<F2>
 nnoremap ; :
 
-" Ag
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
+" Rg
+if executable('rg')
+  let g:ackprg = 'rg --vimgrep --no-heading'
 endif
 
 cnoreabbrev ack Ack!
