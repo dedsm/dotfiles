@@ -1,6 +1,7 @@
 [user]
 	email = davidesousa@gmail.com
 	name = David de Sousa
+	signingkey = F05972D639862549CBB49366DC2940511A838660
 [push]
 	default = simple
 [core]
@@ -8,3 +9,5 @@
 	excludesfile = ~/.gitignore
 [diff]
 	tool = vimdiff
+[commit]
+	gpgsign = true

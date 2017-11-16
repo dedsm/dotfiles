@@ -34,11 +34,9 @@ if ! zgen saved; then
     zgen oh-my-zsh plugins/sudo
     zgen oh-my-zsh plugins/systemd
     zgen oh-my-zsh plugins/tmux
-    zgen oh-my-zsh plugins/virtualenv
-    zgen oh-my-zsh plugins/virtualenvwrapper
+    zgen oh-my-zsh plugins/pyenv
     zgen oh-my-zsh plugins/vault
 
-    zgen load tonyseek/oh-my-zsh-virtualenv-prompt
     zgen load tonyseek/oh-my-zsh-seeker-theme seeker
     zgen load unixorn/autoupdate-zgen
 
@@ -144,10 +142,35 @@ add_to_path rbenv "$HOME/.rbenv/bin" rbenv_init
 add_to_path heroku /usr/local/heroku/bin
 
 #virtualenvwrapper
-source_path venvwrapper /usr/bin/virtualenvwrapper.sh
+#source_path venvwrapper /usr/bin/virtualenvwrapper.sh
+
+# fzf
+function fzf_init {
+    source /usr/share/fzf/completion.zsh
+
+    export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+}
+
+source_path fzf /usr/share/fzf/key-bindings.zsh fzf_init
+
+
 
 # Custom variables
 source_path custom_config "$HOME/.custom_config"
+
+# pyenv
+function pyenv_init {
+    export PYENV_ROOT="$HOME/.pyenv"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+    export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+
+    # Youcompleteme requires shared libs
+    export PYTHON_CONFIGURE_OPTS="--enable-shared"
+    alias cdsitepackages="cd `pyenv prefix`/lib/python*/site-packages"
+
+}
+add_to_path pyenv "$HOME/.pyenv/bin" pyenv_init
 
 # npm
 function npm_init {
@@ -155,7 +178,7 @@ function npm_init {
     export MANPATH="$NPM_PACKAGES/share/man:$MANPATH"
     export NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
 }
-add_to_path npm "$HOME/.npm-packages/bin"
+add_to_path npm "$HOME/.npm-packages/bin" npm_init
 
 # local binaries
 function add_local_lib {

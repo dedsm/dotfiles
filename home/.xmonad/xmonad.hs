@@ -32,8 +32,8 @@ main = do
         } 
         `additionalKeysP`
         [ 
-        ("M1-S-w", spawn "chromium")
-        , ("M1-S-f", spawn "firefox")
+        ("M1-S-f", spawn "chromium")
+        , ("M1-S-w", spawn "firefox-developer")
         , ("M1-S-p", spawn "caja --no-desktop --browser ~")
         , ("M1-S-c", spawn "gnome-calculator")
         , ("<XF86Calculator>", spawn "gnome-calculator")

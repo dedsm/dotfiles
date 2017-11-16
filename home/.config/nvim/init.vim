@@ -4,7 +4,7 @@ Plug 'ctrlpvim/ctrlp.vim' " Fuzzy file search
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " File browser
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'noahfrederick/vim-skeleton'
-Plug 'rking/ag.vim' " Text search
+Plug 'mileszs/ack.vim' " Text search
 Plug 'christoomey/vim-tmux-navigator' " Tmux integration
 Plug 'w0rp/ale' " Syntax checking
 Plug 'Valloric/YouCompleteMe' " Code completion
@@ -14,6 +14,12 @@ Plug 'scrooloose/nerdcommenter' " Comments handling
 Plug 'airblade/vim-gitgutter' " Git status display
 Plug 'CrackerJackMack/vim-pudb' " Connection to pudb breakpoints
 Plug 'altercation/vim-colors-solarized' " Theme
+
+" Dependency; required for vim-syncopate.
+Plug 'google/vim-maktaba'
+Plug 'google/vim-syncopate'
+Plug 'google/vim-glaive'
+
 call plug#end()
 
 let g:python_host_prog = '/usr/bin/python2'
@@ -45,6 +51,28 @@ set backspace=eol,start,indent
 
 set expandtab
 set sm
+
+call glaive#Install()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Syncopate
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+Glaive syncopate browser='chromium'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Ale
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:ale_python_mypy_options = '--follow-imports normal --ignore-missing-imports'
+
+nnoremap <leader>f :ALEFix<cr>
+
+let g:ale_fixers = {
+\   'python':['yapf', 'isort'],
+\}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe
@@ -105,8 +133,14 @@ nnoremap k gk
 set clipboard=unnamedplus
 set pastetoggle=<F2>
 nnoremap ; :
-cnoreabbrev ag Ag!
-cnoreabbrev Ag Ag!
+
+" Ag
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+cnoreabbrev ack Ack!
+cnoreabbrev Ack Ack!
 
 map <leader>zz %:sleep 1000m<CR>%
 

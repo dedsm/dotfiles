@@ -37,6 +37,11 @@ Plugin 'vim-scripts/ZoomWin'
 Plugin 'pearofducks/ansible-vim'
 Plugin 'CrackerJackMack/vim-pudb'
 
+" Dependency; required for vim-syncopate.
+Plugin 'google/vim-maktaba'
+
+Plugin 'google/vim-syncopate'
+
 " needs ctags installed
 Plugin 'majutsushi/tagbar'
 
