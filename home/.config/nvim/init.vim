@@ -1,10 +1,8 @@
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'ctrlpvim/ctrlp.vim' " Fuzzy file search
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " File browser
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'noahfrederick/vim-skeleton'
-Plug 'mileszs/ack.vim' " Text search
 Plug 'christoomey/vim-tmux-navigator' " Tmux integration
 Plug 'w0rp/ale' " Syntax checking
 Plug 'Valloric/YouCompleteMe' " Code completion
@@ -135,19 +133,24 @@ set clipboard=unnamedplus
 set pastetoggle=<F2>
 nnoremap ; :
 
-" Rg
-if executable('rg')
-  let g:ackprg = 'rg --vimgrep --no-heading'
-endif
+" fzf
+cnoreabbrev ag Ag
 
-cnoreabbrev ack Ack!
-cnoreabbrev Ack Ack!
+fun! FzfOmniFiles()
+    let is_git = system('git status')
+    if v:shell_error
+        :Files
+    else
+        :GitFiles --others --exclude-standard --cached
+    endif
+endfun
+map <c-p> :call FzfOmniFiles()<cr>
+
+let g:rg_command = 'rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --color "always" -g "!{.git}/*" '
+
+command! -bang -nargs=* Ag call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
 
 map <leader>zz %:sleep 1000m<CR>%
-
-" Ctrl P
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 " Markdown, not Modula-2
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
