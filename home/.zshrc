@@ -66,6 +66,12 @@ HISTSIZE=100000
 SAVEHIST=1000000
 setopt appendhistory extendedglob
 setopt histignorespace
+setopt histignoredups
+setopt histignorealldups
+setopt histfindnodups
+setopt histsavenodups
+setopt sharehistory
+setopt histexpiredupsfirst
 
 # Vi mode
 #bindkey -v
@@ -193,4 +199,4 @@ function golang_init {
 add_to_path golang "$HOME/.golang/bin" golang_init
 
 # direnv
-eval "$(direnv hook zsh)"
+command -v direnv 1>/dev/null && eval "$(direnv hook zsh)"
