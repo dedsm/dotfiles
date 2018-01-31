@@ -2,10 +2,9 @@
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' } " File browser
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'noahfrederick/vim-skeleton'
-Plug 'christoomey/vim-tmux-navigator' " Tmux integration
 Plug 'w0rp/ale' " Syntax checking
 Plug 'Valloric/YouCompleteMe' " Code completion
+Plug 'christoomey/vim-tmux-navigator' " Tmux integration
 Plug 'ervandew/supertab' " Smart tab key
 Plug 'bling/vim-airline' " Nice status line
 Plug 'scrooloose/nerdcommenter' " Comments handling
@@ -52,7 +51,7 @@ set expandtab
 set sm
 
 call glaive#Install()
-
+"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syncopate
 "
@@ -166,9 +165,9 @@ let g:airline#extensions#branch#empty_message = 'no-git'
 let g:airline_theme='dark'
 
 " Theme
+set t_Co=256
 let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
-"let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
 
@@ -178,6 +177,7 @@ autocmd BufReadPost *
     \ if line("'\"") >= 1 && line("'\"") <= line("$") |
     \   execute "normal! g`\"" |
     \ endif
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " RUNNING TESTS taken from Gary Bernhardt

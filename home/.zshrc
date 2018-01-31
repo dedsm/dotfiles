@@ -1,10 +1,14 @@
+#PS4=$'%D{%M%S%.} %N:%i> '
+#exec 3>&2 2>>$HOME/tmp/startlog.$$
+#setopt xtrace prompt_subst
+
+# Disable oh-my-zsh auto update
+export DISABLE_AUTO_UPDATE=true
+
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
 
 source "$HOME/.zgen/zgen.zsh"
-
-# Disable oh-my-zsh auto update
-export DISABLE_AUTO_UPDATE=true
 
 autoload -Uz compinit
 compinit
@@ -29,12 +33,10 @@ if ! zgen saved; then
     zgen oh-my-zsh plugins/npm
     zgen oh-my-zsh plugins/pip
     zgen oh-my-zsh plugins/python
-    zgen oh-my-zsh plugins/rbenv
     zgen oh-my-zsh plugins/ruby
     zgen oh-my-zsh plugins/sudo
     zgen oh-my-zsh plugins/systemd
     zgen oh-my-zsh plugins/tmux
-    zgen oh-my-zsh plugins/pyenv
     zgen oh-my-zsh plugins/vault
 
     zgen load tonyseek/oh-my-zsh-seeker-theme seeker
@@ -64,7 +66,8 @@ alias vim="nvim"
 HISTFILE=~/.zhistory
 HISTSIZE=100000
 SAVEHIST=1000000
-setopt appendhistory extendedglob
+setopt incappendhistory 
+setopt extendedglob
 setopt histignorespace
 setopt histignoredups
 setopt histignorealldups
@@ -140,7 +143,7 @@ function source_path {
 
 # rbenv
 function rbenv_init {
-    eval "$(rbenv init -)"
+    eval "$(rbenv init - --no-rehash)"
 }
 add_to_path rbenv "$HOME/.rbenv/bin" rbenv_init
 
@@ -167,7 +170,7 @@ source_path custom_config "$HOME/.custom_config"
 # pyenv
 function pyenv_init {
     export PYENV_ROOT="$HOME/.pyenv"
-    eval "$(pyenv init -)"
+    eval "$(pyenv init - --no-rehash)"
     eval "$(pyenv virtualenv-init -)"
     export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
@@ -200,3 +203,6 @@ add_to_path golang "$HOME/.golang/bin" golang_init
 
 # direnv
 command -v direnv 1>/dev/null && eval "$(direnv hook zsh)"
+
+#unsetopt xtrace
+#exec 2>&3 3>&-

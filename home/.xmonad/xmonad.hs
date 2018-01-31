@@ -1,19 +1,18 @@
 import XMonad
 import XMonad.Config.Desktop
 import XMonad.Config.Mate
-import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.InsertPosition
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeysP)
 import XMonad.Actions.FloatKeys
-import XMonad.Layout
-import XMonad.Layout.Fullscreen(fullscreenFull)
 import XMonad.Layout.NoBorders
 import XMonad.Layout.ResizableTile
+import XMonad.Layout.Fullscreen(fullscreenFull)
 import XMonad.Actions.PhysicalScreens
 import System.IO
+import XMonad.Hooks.EwmhDesktops
 import qualified Data.Map as M
 import qualified XMonad.StackSet as W
 
@@ -25,7 +24,7 @@ main = do
         focusedBorderColor = "#cd8b00",
         startupHook = docksStartupHook,
         manageHook = manageDocks <+> myManageHook <+> manageHook mateConfig,
-        handleEventHook = mconcat [ docksEventHook, fullscreenEventHook, handleEventHook mateConfig ],
+        handleEventHook = docksEventHook <+> handleEventHook mateConfig <+> fullscreenEventHook,
         layoutHook = myLayouts,
         modMask = mod4Mask,
         keys = myKeys <+> keys mateConfig
@@ -33,7 +32,7 @@ main = do
         `additionalKeysP`
         [ 
         ("M1-S-f", spawn "chromium")
-        , ("M1-S-w", spawn "firefox-developer")
+        , ("M1-S-w", spawn "firefox-developer-edition")
         , ("M1-S-p", spawn "caja --no-desktop --browser ~")
         , ("M1-S-c", spawn "gnome-calculator")
         , ("<XF86Calculator>", spawn "gnome-calculator")
