@@ -178,8 +178,10 @@ function pyenv_init {
     export PYTHON_CONFIGURE_OPTS="--enable-shared"
     alias cdsitepackages="cd `pyenv prefix`/lib/python*/site-packages"
 
+    function pyenv_prompt_info() { echo "$(pyenv version-name)" }
 }
 add_to_path pyenv "$HOME/.pyenv/bin" pyenv_init
+
 
 # npm
 function npm_init {
