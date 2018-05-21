@@ -11,3 +11,5 @@
 	tool = vimdiff
 [commit]
 	gpgsign = true
+[diff "sopsdiffer"]
+	textconv = sops -d

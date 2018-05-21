@@ -32,7 +32,7 @@ main = do
         `additionalKeysP`
         [ 
         ("M1-S-f", spawn "chromium")
-        , ("M1-S-w", spawn "firefox-developer-edition")
+        , ("M1-S-w", spawn "firefox-developer-edition -p weriot")
         , ("M1-S-p", spawn "caja --no-desktop --browser ~")
         , ("M1-S-c", spawn "gnome-calculator")
         , ("<XF86Calculator>", spawn "gnome-calculator")
@@ -56,8 +56,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList
               , ((modm,               xK_s     ), withFocused (keysResizeWindow (0,30) (1,1)))
               , ((modm .|. shiftMask, xK_s     ), withFocused (keysResizeWindow (0,-30) (1,1)))
               , ((modm .|. shiftMask, xK_d     ), withFocused (keysResizeWindow (-30,-30) (1,1)))
-              , ((modm, xK_p), spawn "dmenu_run")
-              , ((modm .|. shiftMask, xK_p), spawn "dmenu_run")
+              , ((modm, xK_p), spawn "rofi -show run")
+              , ((modm .|. shiftMask, xK_p), spawn "rofi -show drun")
               , ((modm .|. shiftMask, xK_m), spawn "/home/david/local/bin/sptfy")
               , ((modm .|. shiftMask, xK_q), spawn "mate-session-save --logout-dialog")
               , ((modm, xK_Print), spawn "scrot -s")

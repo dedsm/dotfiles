@@ -9,9 +9,10 @@ Plug 'ervandew/supertab' " Smart tab key
 Plug 'bling/vim-airline' " Nice status line
 Plug 'scrooloose/nerdcommenter' " Comments handling
 Plug 'airblade/vim-gitgutter' " Git status display
-Plug 'CrackerJackMack/vim-pudb' " Connection to pudb breakpoints
+Plug 'Elkasitu/vim-pudb' " Connection to pudb breakpoints
 Plug 'altercation/vim-colors-solarized' " Theme
 Plug 'junegunn/fzf.vim' " Fuzzy file search
+Plug 'sudar/vim-arduino-syntax' " Arduino syntax highlighting
 
 " Dependency; required for vim-syncopate.
 Plug 'google/vim-maktaba'

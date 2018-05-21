@@ -29,6 +29,7 @@ if ! zgen saved; then
     zgen oh-my-zsh plugins/git-flow
     zgen oh-my-zsh plugins/heroku
     zgen oh-my-zsh plugins/kubectl
+    zgen oh-my-zsh plugins/helm
     zgen oh-my-zsh plugins/node
     zgen oh-my-zsh plugins/npm
     zgen oh-my-zsh plugins/pip
@@ -163,6 +164,8 @@ function fzf_init {
 source_path fzf /usr/share/fzf/key-bindings.zsh fzf_init
 
 
+# gcloud completion
+source_path gcloud "/opt/google-cloud-sdk/completion.zsh.inc"
 
 # Custom variables
 source_path custom_config "$HOME/.custom_config"
@@ -208,3 +211,6 @@ command -v direnv 1>/dev/null && eval "$(direnv hook zsh)"
 
 #unsetopt xtrace
 #exec 2>&3 3>&-
+
+# Java rocks!
+export _JAVA_AWT_WM_NONREPARENTING=1 

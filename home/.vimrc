@@ -35,7 +35,7 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'ervandew/supertab'
 Plugin 'vim-scripts/ZoomWin'
 Plugin 'pearofducks/ansible-vim'
-Plugin 'CrackerJackMack/vim-pudb'
+Plugin 'Elkasitu/vim-pudb'
 
 " Dependency; required for vim-syncopate.
 Plugin 'google/vim-maktaba'
