@@ -7,6 +7,7 @@
 [core]
 	editor = /usr/bin/nvim
 	excludesfile = ~/.gitignore
+	pager = less -F -X
 [diff]
 	tool = vimdiff
 [commit]
