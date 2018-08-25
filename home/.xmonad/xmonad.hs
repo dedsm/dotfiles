@@ -24,7 +24,7 @@ main = do
         focusedBorderColor = "#cd8b00",
         startupHook = docksStartupHook,
         manageHook = manageDocks <+> myManageHook <+> manageHook mateConfig,
-        handleEventHook = docksEventHook <+> handleEventHook mateConfig <+> fullscreenEventHook,
+        handleEventHook = docksEventHook <+> handleEventHook mateConfig <+> XMonad.Hooks.EwmhDesktops.fullscreenEventHook,
         layoutHook = myLayouts,
         modMask = mod4Mask,
         keys = myKeys <+> keys mateConfig
@@ -48,8 +48,7 @@ myManageHook = composeAll
     [ insertPosition Below Newer
     ]
 
-myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList
-             [
+myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
               ((modm,               xK_d     ), withFocused (keysResizeWindow (30,30) (1,1)))
               , ((modm,               xK_a     ), withFocused (keysResizeWindow (30,0) (1,1)))
               , ((modm .|. shiftMask, xK_a     ), withFocused (keysResizeWindow (-30,0) (1,1)))
@@ -62,14 +61,14 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList
               , ((modm .|. shiftMask, xK_q), spawn "mate-session-save --logout-dialog")
               , ((modm, xK_Print), spawn "scrot -s")
               , ((0, xK_Print), spawn "scrot")
-              , ((modm, xK_w), viewScreen 0 >> windows W.focusMaster)
-              , ((modm, xK_e), viewScreen 1 >> windows W.focusMaster)
-              , ((modm, xK_r), viewScreen 2 >> windows W.focusMaster)
-              , ((modm .|. shiftMask, xK_w), sendToScreen 0)
-              , ((modm .|. shiftMask, xK_e), sendToScreen 1)
-              , ((modm .|. shiftMask, xK_r), sendToScreen 2)
+              ]
+              ++
+              [((modm .|. mask, key), f def sc)
+                | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
+                , (f, mask) <- [(viewScreen, 0), (sendToScreen, shiftMask)]
              ]
 
-myLayouts = avoidStruts (smartBorders tiled ||| smartBorders (Mirror tiled)) ||| noBorders (fullscreenFull Full)
+
+myLayouts = avoidStruts (smartBorders tiled ||| smartBorders (Mirror tiled)) ||| noBorders (Full)
             where
                 tiled = ResizableTall 1 (2/100) (1/2) []

@@ -13,6 +13,7 @@ Plug 'Elkasitu/vim-pudb' " Connection to pudb breakpoints
 Plug 'altercation/vim-colors-solarized' " Theme
 Plug 'junegunn/fzf.vim' " Fuzzy file search
 Plug 'sudar/vim-arduino-syntax' " Arduino syntax highlighting
+Plug 'tpope/vim-surround' " vim surround
 
 " Dependency; required for vim-syncopate.
 Plug 'google/vim-maktaba'
@@ -242,7 +243,7 @@ function! RunTests(filename)
             exec ":!bundle exec rspec --color " . a:filename
         " If we see python-looking tests, assume they should be run with Nose
         elseif strlen(glob("test/**/*.py") . glob("**/tests/**/*.py"))
-            exec "!make test/\"-e simple -- " . a:filename . "\""
+            exec "!make test/\"" . a:filename . "\""
         " Fall back to a normal blocking test run
         else
             exec ":!rspec --color " . a:filename
