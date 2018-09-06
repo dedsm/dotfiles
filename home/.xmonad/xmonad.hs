@@ -1,8 +1,8 @@
 import XMonad
-import XMonad.Config.Desktop
 import XMonad.Config.Mate
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.InsertPosition
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeysP)
@@ -44,8 +44,11 @@ main = do
         , ("<XF86AudioNext>", spawn "playerctl next")
         ]
 
-myManageHook = composeAll
-    [ insertPosition Below Newer
+myManageHook = composeOne
+    [ 
+    className =? "Gnome-calculator" -?> doFloat
+    , isDialog -?> doFloat
+    , return True -?> insertPosition End Newer
     ]
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [

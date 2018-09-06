@@ -1,6 +1,7 @@
 #PS4=$'%D{%M%S%.} %N:%i> '
 #exec 3>&2 2>>$HOME/tmp/startlog.$$
 #setopt xtrace prompt_subst
+#zmodload zsh/zprof
 
 # Disable oh-my-zsh auto update
 export DISABLE_AUTO_UPDATE=true
@@ -10,8 +11,8 @@ fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
 
 source "$HOME/.zgen/zgen.zsh"
 
-autoload -Uz compinit
-compinit
+#autoload -Uz compinit
+#compinit
 
 if ! zgen saved; then
     zgen oh-my-zsh
