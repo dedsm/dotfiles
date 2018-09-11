@@ -1,51 +1,52 @@
 #PS4=$'%D{%M%S%.} %N:%i> '
 #exec 3>&2 2>>$HOME/tmp/startlog.$$
 #setopt xtrace prompt_subst
-#zmodload zsh/zprof
 
-# Disable oh-my-zsh auto update
-export DISABLE_AUTO_UPDATE=true
-
-source "$HOME/.homesick/repos/homeshick/homeshick.sh"
-fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
-
-source "$HOME/.zgen/zgen.zsh"
+source "$HOME/.zplugin/bin/zplugin.zsh"
+export ZSH_CACHE_DIR="$HOME/.zplugin/cache"
 
 #autoload -Uz compinit
 #compinit
 
-if ! zgen saved; then
-    zgen oh-my-zsh
+zplugin snippet OMZ::lib/theme-and-appearance.zsh
+zplugin snippet OMZ::lib/key-bindings.zsh
+zplugin snippet OMZ::lib/git.zsh
+zplugin snippet OMZ::plugins/git/git.plugin.zsh
+zplugin cdclear -q
+zplugin snippet OMZ::plugins/archlinux/archlinux.plugin.zsh
+zplugin snippet OMZ::plugins/autojump/autojump.plugin.zsh
+zplugin snippet OMZ::plugins/bundler/bundler.plugin.zsh
+zplugin snippet OMZ::plugins/celery/_celery
+zplugin snippet OMZ::plugins/cp/cp.plugin.zsh
+zplugin snippet OMZ::plugins/django/django.plugin.zsh
+zplugin ice wait'!1'
+zplugin snippet OMZ::plugins/docker/_docker
+zplugin snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh
+zplugin snippet OMZ::plugins/gem/gem.plugin.zsh
+zplugin snippet OMZ::plugins/git-flow/git-flow.plugin.zsh
+zplugin snippet OMZ::plugins/heroku/heroku.plugin.zsh
+zplugin snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
+zplugin snippet OMZ::plugins/helm/helm.plugin.zsh
+zplugin snippet OMZ::plugins/node/node.plugin.zsh
+zplugin snippet OMZ::plugins/npm/npm.plugin.zsh
+zplugin snippet OMZ::plugins/pip/pip.plugin.zsh
+zplugin snippet OMZ::plugins/python/python.plugin.zsh
+zplugin snippet OMZ::plugins/ruby/ruby.plugin.zsh
+zplugin snippet OMZ::plugins/sudo/sudo.plugin.zsh
+zplugin snippet OMZ::plugins/systemd/systemd.plugin.zsh
+zplugin snippet OMZ::plugins/tmux/tmux.plugin.zsh
 
-    zgen oh-my-zsh plugins/archlinux
-    zgen oh-my-zsh plugins/autojump
-    zgen oh-my-zsh plugins/bundler
-    zgen oh-my-zsh plugins/celery
-    zgen oh-my-zsh plugins/cp
-    zgen oh-my-zsh plugins/django
-    zgen oh-my-zsh plugins/docker
-    zgen oh-my-zsh plugins/docker-compose
-    zgen oh-my-zsh plugins/gem
-    zgen oh-my-zsh plugins/git
-    zgen oh-my-zsh plugins/git-flow
-    zgen oh-my-zsh plugins/heroku
-    zgen oh-my-zsh plugins/kubectl
-    zgen oh-my-zsh plugins/helm
-    zgen oh-my-zsh plugins/node
-    zgen oh-my-zsh plugins/npm
-    zgen oh-my-zsh plugins/pip
-    zgen oh-my-zsh plugins/python
-    zgen oh-my-zsh plugins/ruby
-    zgen oh-my-zsh plugins/sudo
-    zgen oh-my-zsh plugins/systemd
-    zgen oh-my-zsh plugins/tmux
-    zgen oh-my-zsh plugins/vault
+#zplugin snippet OMZ::themes/dstufft.zsh-theme
+zplugin snippet https://github.com/tonyseek/oh-my-zsh-seeker-theme/blob/master/seeker.zsh-theme
 
-    zgen load tonyseek/oh-my-zsh-seeker-theme seeker
-    zgen load unixorn/autoupdate-zgen
+setopt promptsubst
+autoload -Uz compinit
+compinit
 
-    zgen save
-fi
+zplugin cdreplay -q
+
+source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
 
 # PageUp and PageDown search
 bindkey "\e[5~" history-beginning-search-backward
