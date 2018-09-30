@@ -10,40 +10,57 @@ export ZSH_CACHE_DIR="$HOME/.zplugin/cache"
 
 zplugin snippet OMZ::lib/theme-and-appearance.zsh
 zplugin snippet OMZ::lib/key-bindings.zsh
+zplugin snippet https://github.com/tonyseek/oh-my-zsh-seeker-theme/blob/master/seeker.zsh-theme
+zplugin ice silent wait'0'
 zplugin snippet OMZ::lib/git.zsh
+zplugin ice silent wait'0'
 zplugin snippet OMZ::plugins/git/git.plugin.zsh
-zplugin cdclear -q
+zplugin ice silent wait'0'
 zplugin snippet OMZ::plugins/archlinux/archlinux.plugin.zsh
+zplugin ice silent wait'0'
 zplugin snippet OMZ::plugins/autojump/autojump.plugin.zsh
+zplugin ice silent wait'0'
 zplugin snippet OMZ::plugins/bundler/bundler.plugin.zsh
+zplugin ice silent wait'0'
 zplugin snippet OMZ::plugins/celery/_celery
+zplugin ice silent wait'0'
 zplugin snippet OMZ::plugins/cp/cp.plugin.zsh
+zplugin ice silent wait'0'
 zplugin snippet OMZ::plugins/django/django.plugin.zsh
-zplugin ice wait'!1'
+zplugin ice silent wait'0'
 zplugin snippet OMZ::plugins/docker/_docker
+zplugin ice silent wait'0'
 zplugin snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh
+zplugin ice silent wait'0'
 zplugin snippet OMZ::plugins/gem/gem.plugin.zsh
+zplugin ice silent wait'0'
 zplugin snippet OMZ::plugins/git-flow/git-flow.plugin.zsh
+zplugin ice silent wait'0'
 zplugin snippet OMZ::plugins/heroku/heroku.plugin.zsh
+zplugin ice silent wait'0'
 zplugin snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
+zplugin ice silent wait'0'
 zplugin snippet OMZ::plugins/helm/helm.plugin.zsh
+zplugin ice silent wait'0'
 zplugin snippet OMZ::plugins/node/node.plugin.zsh
+zplugin ice silent wait'0'
 zplugin snippet OMZ::plugins/npm/npm.plugin.zsh
+zplugin ice silent wait'0'
 zplugin snippet OMZ::plugins/pip/pip.plugin.zsh
+zplugin ice silent wait'0'
 zplugin snippet OMZ::plugins/python/python.plugin.zsh
+zplugin ice silent wait'0'
 zplugin snippet OMZ::plugins/ruby/ruby.plugin.zsh
+zplugin ice silent wait'0'
 zplugin snippet OMZ::plugins/sudo/sudo.plugin.zsh
+zplugin ice silent wait'0'
 zplugin snippet OMZ::plugins/systemd/systemd.plugin.zsh
+
+zplugin ice silent wait'!0' atload'zpcompinit; zplugin cdreplay -q'
 zplugin snippet OMZ::plugins/tmux/tmux.plugin.zsh
 
 #zplugin snippet OMZ::themes/dstufft.zsh-theme
-zplugin snippet https://github.com/tonyseek/oh-my-zsh-seeker-theme/blob/master/seeker.zsh-theme
-
 setopt promptsubst
-autoload -Uz compinit
-compinit
-
-zplugin cdreplay -q
 
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
@@ -98,7 +115,7 @@ export KEYTIMEOUT=1
 ## ctrl-r starts searching history backward
 #bindkey '^r' history-incremental-search-backward
 
-zstyle :compinstall filename '/home/david/.zshrc'
+#zstyle :compinstall filename '/home/david/.zshrc'
 
 
 
@@ -216,3 +233,4 @@ command -v direnv 1>/dev/null && eval "$(direnv hook zsh)"
 
 # Java rocks!
 export _JAVA_AWT_WM_NONREPARENTING=1 
+
