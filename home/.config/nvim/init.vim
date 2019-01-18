@@ -14,7 +14,8 @@ Plug 'altercation/vim-colors-solarized' " Theme
 Plug 'junegunn/fzf.vim' " Fuzzy file search
 Plug 'sudar/vim-arduino-syntax' " Arduino syntax highlighting
 Plug 'tpope/vim-surround' " vim surround
-
+Plug 'digitaltoad/vim-pug'  " pug js templating
+Plug 'posva/vim-vue'  " vue plugin
 " Dependency; required for vim-syncopate.
 Plug 'google/vim-maktaba'
 Plug 'google/vim-syncopate'
@@ -72,7 +73,10 @@ nnoremap <leader>f :ALEFix<cr>
 
 let g:ale_fixers = {
 \   'python':['yapf', 'isort'],
+\   'javascript':['eslint'],
+\   'vue':['eslint'],
 \}
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe
@@ -83,7 +87,7 @@ nnoremap <leader>gd :YcmCompleter GoToDeclaration<cr>
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 " make YCM use the python version of the virtualenv to do completions
-let g:ycm_python_binary_path = 'python'
+"let g:ycm_python_binary_path = 'python'
 " let g:ycm_log_level = "debug"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -242,8 +246,8 @@ function! RunTests(filename)
         elseif filereadable("Gemfile")
             exec ":!bundle exec rspec --color " . a:filename
         " If we see python-looking tests, assume they should be run with Nose
-        elseif strlen(glob("test/**/*.py") . glob("**/tests/**/*.py"))
-            exec "!TOX_ENV=simple make test/\"" . a:filename . "\""
+        elseif strlen(glob("**/tests/**/*.py"))
+            exec "!TOX_ENV=simple make ". a:filename
         " Fall back to a normal blocking test run
         else
             exec ":!rspec --color " . a:filename

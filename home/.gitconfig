@@ -1,7 +1,7 @@
 [user]
 	email = davidesousa@gmail.com
 	name = David de Sousa
-	signingkey = F05972D639862549CBB49366DC2940511A838660
+	signingkey = 47D71020FF7879FF43CD44C18B9C2D1B7F269663
 [push]
 	default = simple
 [core]

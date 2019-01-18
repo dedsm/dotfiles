@@ -10,7 +10,9 @@ export ZSH_CACHE_DIR="$HOME/.zplugin/cache"
 
 zplugin snippet OMZ::lib/theme-and-appearance.zsh
 zplugin snippet OMZ::lib/key-bindings.zsh
+zplugin snippet OMZ::lib/directories.zsh
 zplugin snippet https://github.com/tonyseek/oh-my-zsh-seeker-theme/blob/master/seeker.zsh-theme
+zplugin light zdharma/fast-syntax-highlighting
 zplugin ice silent wait'0'
 zplugin snippet OMZ::lib/git.zsh
 zplugin ice silent wait'0'
@@ -58,6 +60,8 @@ zplugin snippet OMZ::plugins/systemd/systemd.plugin.zsh
 
 zplugin ice silent wait'!0' atload'zpcompinit; zplugin cdreplay -q'
 zplugin snippet OMZ::plugins/tmux/tmux.plugin.zsh
+zplugin ice as"program"
+zplugin snippet OMZ::plugins/tmux/tmux.extra.conf
 
 #zplugin snippet OMZ::themes/dstufft.zsh-theme
 setopt promptsubst
