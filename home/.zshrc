@@ -8,60 +8,6 @@ export ZSH_CACHE_DIR="$HOME/.zplugin/cache"
 #autoload -Uz compinit
 #compinit
 
-zplugin snippet OMZ::lib/theme-and-appearance.zsh
-zplugin snippet OMZ::lib/key-bindings.zsh
-zplugin snippet OMZ::lib/directories.zsh
-zplugin snippet https://github.com/tonyseek/oh-my-zsh-seeker-theme/blob/master/seeker.zsh-theme
-zplugin light zdharma/fast-syntax-highlighting
-zplugin ice silent wait'0'
-zplugin snippet OMZ::lib/git.zsh
-zplugin ice silent wait'0'
-zplugin snippet OMZ::plugins/git/git.plugin.zsh
-zplugin ice silent wait'0'
-zplugin snippet OMZ::plugins/archlinux/archlinux.plugin.zsh
-zplugin ice silent wait'0'
-zplugin snippet OMZ::plugins/autojump/autojump.plugin.zsh
-zplugin ice silent wait'0'
-zplugin snippet OMZ::plugins/bundler/bundler.plugin.zsh
-zplugin ice silent wait'0'
-zplugin snippet OMZ::plugins/celery/_celery
-zplugin ice silent wait'0'
-zplugin snippet OMZ::plugins/cp/cp.plugin.zsh
-zplugin ice silent wait'0'
-zplugin snippet OMZ::plugins/django/django.plugin.zsh
-zplugin ice silent wait'0'
-zplugin snippet OMZ::plugins/docker/_docker
-zplugin ice silent wait'0'
-zplugin snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh
-zplugin ice silent wait'0'
-zplugin snippet OMZ::plugins/gem/gem.plugin.zsh
-zplugin ice silent wait'0'
-zplugin snippet OMZ::plugins/git-flow/git-flow.plugin.zsh
-zplugin ice silent wait'0'
-zplugin snippet OMZ::plugins/heroku/heroku.plugin.zsh
-zplugin ice silent wait'0'
-zplugin snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
-zplugin ice silent wait'0'
-zplugin snippet OMZ::plugins/helm/helm.plugin.zsh
-zplugin ice silent wait'0'
-zplugin snippet OMZ::plugins/node/node.plugin.zsh
-zplugin ice silent wait'0'
-zplugin snippet OMZ::plugins/npm/npm.plugin.zsh
-zplugin ice silent wait'0'
-zplugin snippet OMZ::plugins/pip/pip.plugin.zsh
-zplugin ice silent wait'0'
-zplugin snippet OMZ::plugins/python/python.plugin.zsh
-zplugin ice silent wait'0'
-zplugin snippet OMZ::plugins/ruby/ruby.plugin.zsh
-zplugin ice silent wait'0'
-zplugin snippet OMZ::plugins/sudo/sudo.plugin.zsh
-zplugin ice silent wait'0'
-zplugin snippet OMZ::plugins/systemd/systemd.plugin.zsh
-
-zplugin ice silent wait'!0' atload'zpcompinit; zplugin cdreplay -q'
-zplugin snippet OMZ::plugins/tmux/tmux.plugin.zsh
-zplugin ice as"program"
-zplugin snippet OMZ::plugins/tmux/tmux.extra.conf
 
 #zplugin snippet OMZ::themes/dstufft.zsh-theme
 setopt promptsubst
@@ -177,14 +123,6 @@ add_to_path heroku /usr/local/heroku/bin
 #virtualenvwrapper
 #source_path venvwrapper /usr/bin/virtualenvwrapper.sh
 
-# fzf
-function fzf_init {
-    source /usr/share/fzf/completion.zsh
-
-    export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-}
-
-source_path fzf /usr/share/fzf/key-bindings.zsh fzf_init
 
 
 # gcloud completion
@@ -238,3 +176,63 @@ command -v direnv 1>/dev/null && eval "$(direnv hook zsh)"
 # Java rocks!
 export _JAVA_AWT_WM_NONREPARENTING=1 
 
+zplugin snippet OMZ::lib/theme-and-appearance.zsh
+zplugin snippet OMZ::lib/key-bindings.zsh
+zplugin snippet OMZ::lib/directories.zsh
+zplugin snippet https://github.com/tonyseek/oh-my-zsh-seeker-theme/blob/master/seeker.zsh-theme
+zplugin snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
+zplugin light zdharma/fast-syntax-highlighting
+zplugin ice silent wait'0'
+zplugin snippet OMZ::lib/git.zsh
+zplugin ice silent wait'0'
+zplugin snippet OMZ::plugins/git/git.plugin.zsh
+zplugin ice silent wait'0'
+zplugin snippet OMZ::plugins/archlinux/archlinux.plugin.zsh
+zplugin ice silent wait'0'
+zplugin snippet OMZ::plugins/autojump/autojump.plugin.zsh
+zplugin ice silent wait'0'
+zplugin snippet OMZ::plugins/bundler/bundler.plugin.zsh
+zplugin ice silent wait'0'
+zplugin snippet OMZ::plugins/celery/_celery
+zplugin ice silent wait'0'
+zplugin snippet OMZ::plugins/cp/cp.plugin.zsh
+zplugin ice silent wait'0'
+zplugin snippet OMZ::plugins/django/django.plugin.zsh
+zplugin ice silent wait'0'
+zplugin snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh
+zplugin ice silent wait'0'
+zplugin snippet OMZ::plugins/gem/gem.plugin.zsh
+zplugin ice silent wait'0'
+zplugin snippet OMZ::plugins/git-flow/git-flow.plugin.zsh
+zplugin ice silent wait'0'
+zplugin snippet OMZ::plugins/heroku/heroku.plugin.zsh
+zplugin ice silent wait'0'
+zplugin snippet OMZ::plugins/helm/helm.plugin.zsh
+zplugin ice silent wait'0'
+zplugin snippet OMZ::plugins/node/node.plugin.zsh
+zplugin ice silent wait'0'
+zplugin snippet OMZ::plugins/npm/npm.plugin.zsh
+zplugin ice silent wait'0'
+zplugin snippet OMZ::plugins/pip/pip.plugin.zsh
+zplugin ice silent wait'0'
+zplugin snippet OMZ::plugins/python/python.plugin.zsh
+zplugin ice silent wait'0'
+zplugin snippet OMZ::plugins/ruby/ruby.plugin.zsh
+zplugin ice silent wait'0'
+zplugin snippet OMZ::plugins/sudo/sudo.plugin.zsh
+zplugin ice silent wait'0'
+zplugin snippet OMZ::plugins/systemd/systemd.plugin.zsh
+
+zplugin ice silent wait'!0' atload'zpcompinit; zpcdreplay'
+zplugin snippet OMZ::plugins/tmux/tmux.plugin.zsh
+
+
+
+# fzf
+function fzf_init {
+    source /usr/share/fzf/completion.zsh
+
+    export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+}
+
+source_path fzf /usr/share/fzf/key-bindings.zsh fzf_init
