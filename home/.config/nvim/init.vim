@@ -24,6 +24,7 @@ let g:python3_host_prog = '/usr/bin/python3'
 filetype plugin indent on
 
 syntax on
+set synmaxcol=140
 
 set mouse=""
 set nowrap
@@ -207,5 +208,13 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 nmap <leader>qf  <Plug>(coc-fix-current)
 
+function s:format_and_sort()
+    call CocAction('format')
+    execute 'w'
+    if (index(['python'], &filetype) >= 0)
+        call CocAction('runCommand', 'python.sortImports')
+    endif
+endfunction
+
 " Use `:Format` to format current buffer
-nmap <leader>f :call CocAction('format')<CR>
+nmap <leader>f :call <SID>format_and_sort()<CR><CR>

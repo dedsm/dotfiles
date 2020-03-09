@@ -2,5 +2,4 @@ ipython
 flake8
 mypy
 isort
-yapf
-pipenv
+black
